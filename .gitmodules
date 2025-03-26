@@ -1,0 +1,39 @@
+[submodule "submodules/abcd_sm_web3-non-bank-banking-dapp"]
+	path = submodules/abcd_sm_web3-non-bank-banking-dapp
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_web3-non-bank-banking-dapp
+[submodule "submodules/abcd_sm_blockchain-forking-contract"]
+	path = submodules/abcd_sm_blockchain-forking-contract
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_blockchain-forking-contract
+[submodule "submodules/abcd_sm_openzeppelin-defender"]
+	path = submodules/abcd_sm_openzeppelin-defender
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_openzeppelin-defender
+[submodule "submodules/abcd_sm_openzeppelin-smart-contracts"]
+	path = submodules/abcd_sm_openzeppelin-smart-contracts
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_openzeppelin-smart-contracts
+[submodule "submodules/abcd_sm_utility-contracts"]
+	path = submodules/abcd_sm_utility-contracts
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_utility-contracts
+[submodule "submodules/abcd_sm_two-way-tethering"]
+	path = submodules/abcd_sm_two-way-tethering
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_two-way-tethering
+[submodule "submodules/abcd_sm_blockchain-mirroring"]
+	path = submodules/abcd_sm_blockchain-mirroring
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_blockchain-mirroring
+[submodule "submodules/abcd_sm_ccip-arbitrary-messaging-bridge"]
+	path = submodules/abcd_sm_ccip-arbitrary-messaging-bridge
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_ccip-arbitrary-messaging-bridge
+[submodule "submodules/abcd_sm_swagger-api"]
+	path = submodules/abcd_sm_swagger-api
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_swagger-api
+[submodule "submodules/abcd_sm_javascript-and-typescript-sdk"]
+	path = submodules/abcd_sm_javascript-and-typescript-sdk
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_javascript-and-typescript-sdk
+[submodule "submodules/abcd_sm_webhooks"]
+	path = submodules/abcd_sm_webhooks
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_webhooks
+[submodule "submodules/abcd_sm_custom-submodule-scaffold"]
+	path = submodules/abcd_sm_custom-submodule-scaffold
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_custom-submodule-scaffold
+[submodule "submodules/abcd_sm_documentation-tooling"]
+	path = submodules/abcd_sm_documentation-tooling
+	url = https://github.com/Defi-Oracle-Tooling/abcd_sm_documentation-tooling
