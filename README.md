@@ -1,4 +1,4 @@
-# abc&d Azure Besu Configurator and Deployer
+# abc&d - Azure Besu Configurator and Deployer
 
 For detailed documentation, visit the [Documentation Index](docs/index.md).
 
