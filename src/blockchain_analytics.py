@@ -1,7 +1,12 @@
+import os
 import requests
 import time
 
-RPC_ENDPOINT = "http://localhost:8545"
+# Load environment variables
+BLOCKCHAIN_RPC_ENDPOINT = os.getenv("BLOCKCHAIN_RPC_ENDPOINT", "http://localhost:8545")
+
+# Replace hardcoded RPC endpoint with the one from .env
+RPC_ENDPOINT = BLOCKCHAIN_RPC_ENDPOINT
 
 # Function to fetch block details
 def fetch_block_details(block_number):

@@ -1,6 +1,14 @@
 import os
 import logging
 
+# Load environment variables
+PROMETHEUS_USER = os.getenv("PROMETHEUS_USER")
+PROMETHEUS_PASSWORD = os.getenv("PROMETHEUS_PASSWORD")
+
+# Ensure required environment variables are set
+if not PROMETHEUS_USER or not PROMETHEUS_PASSWORD:
+    raise EnvironmentError("Prometheus credentials are not set in the .env file.")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",

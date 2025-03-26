@@ -2,6 +2,14 @@ import os
 import subprocess
 import logging
 
+# Load environment variables
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
+PAGERDUTY_API_KEY = os.getenv("PAGERDUTY_API_KEY")
+
+# Ensure required environment variables are set
+if not SLACK_WEBHOOK_URL or not PAGERDUTY_API_KEY:
+    raise EnvironmentError("Slack or PagerDuty credentials are not set in the .env file.")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",

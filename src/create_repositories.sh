@@ -14,13 +14,29 @@ REPOSITORIES=(
 # GitHub organization or user
 GITHUB_ORG="your-org"
 
-# Load GitHub token from environment variables
-GITHUB_TOKEN=${GITHUB_TOKEN:-""}
+# Base directory for the project
+PROJECT_ROOT=$(dirname $(dirname $(realpath $0)))
 
-if [ -z "$GITHUB_TOKEN" ]; then
-  echo "Error: GITHUB_TOKEN is not set. Please set it in the .env file or as an environment variable."
+# Ensure the .env file exists
+if [ ! -f "$PROJECT_ROOT/.env" ]; then
+  echo "Error: .env file not found. Please create a .env file in the project root directory with the required environment variables."
+  echo "Example .env file content:"
+  echo "GITHUB_ACCESS_TOKEN=your_github_access_token_here"
   exit 1
 fi
+
+# Load environment variables from .env file
+# The .env file should be located in the project root directory.
+export $(grep -v '^#' $PROJECT_ROOT/.env | xargs)
+
+# Ensure GITHUB_ACCESS_TOKEN is set
+if [ -z "$GITHUB_ACCESS_TOKEN" ]; then
+  echo "Error: GITHUB_ACCESS_TOKEN is not set in the .env file. Please add it and try again."
+  exit 1
+fi
+
+# Use GITHUB_ACCESS_TOKEN for authentication
+GITHUB_TOKEN=$GITHUB_ACCESS_TOKEN
 
 # Base API URL
 GITHUB_API="https://api.github.com"

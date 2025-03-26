@@ -1,6 +1,14 @@
 import os
 import logging
 
+# Load environment variables
+DEFENDER_API_KEY = os.getenv("DEFENDER_API_KEY")
+DEFENDER_API_SECRET = os.getenv("DEFENDER_API_SECRET")
+
+# Ensure required environment variables are set
+if not DEFENDER_API_KEY or not DEFENDER_API_SECRET:
+    raise EnvironmentError("OpenZeppelin Defender API credentials are not set in the .env file.")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",

@@ -1,6 +1,6 @@
 # abc&d - Azure Besu Configurator and Deployer
 
-For detailed documentation, visit the [Documentation Index](docs/index.md).
+For detailed documentation, visit the [Documentation Index](./docs/index.md).
 
 Please help brainstorm or recommend solutions based on the following considerations:
 
