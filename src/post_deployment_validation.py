@@ -1,6 +1,12 @@
 import os
 import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
 def validate_monitoring():
     logging.info("Validating monitoring setup...")
     # Check for active and passive monitoring tools
@@ -40,7 +46,6 @@ def validate_upgrades():
         logging.error("Upgrade script missing.")
 
 def main():
-    logging.basicConfig(level=logging.INFO)
     logging.info("Starting post-deployment validation...")
 
     validate_monitoring()

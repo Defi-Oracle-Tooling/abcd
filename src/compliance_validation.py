@@ -1,6 +1,12 @@
 import os
 import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
 def validate_encryption():
     logging.info("Validating encryption setup...")
     # Check for encryption keys
@@ -26,7 +32,6 @@ def validate_data_privacy():
         logging.error("GDPR compliance configuration missing.")
 
 def main():
-    logging.basicConfig(level=logging.INFO)
     logging.info("Starting compliance validation...")
 
     validate_encryption()

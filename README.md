@@ -85,6 +85,52 @@ Post-deployment tasks should include:
   - Support customization for tenants, such as configurable deployment options or plugins.
   - Adhere to relevant compliance standards (e.g., GDPR, ISO/IEC 27001) to ensure tenant data protection.
 
+## Getting Started
+
+To get started with the Azure Besu Configurator and Deployer (ABCD), follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-repo/abcd.git
+   cd abcd
+   ```
+
+2. **Install Dependencies**:
+   Ensure you have Python 3.8+ installed. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run Validation Scripts**:
+   Validate your deployment environment:
+   ```bash
+   python src/post_deployment_validation.py
+   python src/compliance_validation.py
+   ```
+
+4. **Deploy Using Kubernetes**:
+   Use the provided Kubernetes deployment example:
+   ```bash
+   kubectl apply -f docs/kubernetes-deployment-example.yaml
+   ```
+
+## Features
+
+- **Decision Tree for Blockchain Technologies**:
+  Recommends the best blockchain technology based on your use case.
+- **Post-Deployment Validation**:
+  Ensures monitoring, issue management, data management, and upgrades are properly configured.
+- **Compliance Validation**:
+  Validates encryption, access control, and GDPR compliance.
+- **Kubernetes Deployment**:
+  Provides a ready-to-use Kubernetes deployment example for Besu nodes.
+- **Monitoring and Analytics**:
+  Includes Prometheus and Grafana configurations for tracking metrics.
+
+## Standards and Compliance
+
+This project adheres to various global standards and compliance frameworks. For more details, see the [Standards Documentation](standards/README.md).
+
 ## Branching Strategy
 
 We follow the Git Flow branching strategy:

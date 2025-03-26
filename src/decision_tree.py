@@ -9,14 +9,22 @@ class DecisionTree:
 
     def recommend_technology(self, use_case):
         """Recommend a technology based on the provided use case."""
-        if "supply chain" in use_case.lower():
-            return "Hyperledger Fabric"
-        elif "financial services" in use_case.lower():
-            return "Consensys Quorum"
-        elif "identity management" in use_case.lower():
-            return "PolygonID"
+        use_case = use_case.lower()
+        recommendations = []
+
+        if "supply chain" in use_case:
+            recommendations.append(("Hyperledger Fabric", 0.9))
+        if "financial services" in use_case:
+            recommendations.append(("Consensys Quorum", 0.8))
+        if "identity management" in use_case:
+            recommendations.append(("PolygonID", 0.7))
+
+        if recommendations:
+            # Sort by confidence score and return the highest
+            recommendations.sort(key=lambda x: x[1], reverse=True)
+            return recommendations[0][0]
         else:
-            return "LayerZero"
+            return "LayerZero"  # Default recommendation
 
 if __name__ == "__main__":
     tree = DecisionTree()
