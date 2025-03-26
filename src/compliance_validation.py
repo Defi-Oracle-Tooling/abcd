@@ -9,27 +9,33 @@ logging.basicConfig(
 
 def validate_encryption():
     logging.info("Validating encryption setup...")
-    # Check for encryption keys
-    if os.path.exists("/etc/security/encryption_keys.pem"):
-        logging.info("Encryption keys found.")
-    else:
-        logging.error("Encryption keys missing.")
+    try:
+        if os.path.exists("/etc/security/encryption_keys.pem"):
+            logging.info("Encryption keys found.")
+        else:
+            raise FileNotFoundError("Encryption keys missing.")
+    except FileNotFoundError as e:
+        logging.error(e)
 
 def validate_access_control():
     logging.info("Validating access control setup...")
-    # Check for access control policies
-    if os.path.exists("/etc/security/access_control.yaml"):
-        logging.info("Access control policies found.")
-    else:
-        logging.error("Access control policies missing.")
+    try:
+        if os.path.exists("/etc/security/access_control.yaml"):
+            logging.info("Access control policies found.")
+        else:
+            raise FileNotFoundError("Access control policies missing.")
+    except FileNotFoundError as e:
+        logging.error(e)
 
 def validate_data_privacy():
     logging.info("Validating data privacy setup...")
-    # Check for GDPR compliance configurations
-    if os.path.exists("/etc/compliance/gdpr_config.json"):
-        logging.info("GDPR compliance configuration found.")
-    else:
-        logging.error("GDPR compliance configuration missing.")
+    try:
+        if os.path.exists("/etc/compliance/gdpr_config.json"):
+            logging.info("GDPR compliance configuration found.")
+        else:
+            raise FileNotFoundError("GDPR compliance configuration missing.")
+    except FileNotFoundError as e:
+        logging.error(e)
 
 def main():
     logging.info("Starting compliance validation...")

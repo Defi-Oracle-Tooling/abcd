@@ -1,3 +1,5 @@
+import argparse
+
 class DecisionTree:
     def __init__(self):
         self.technologies = {
@@ -26,8 +28,14 @@ class DecisionTree:
         else:
             return "LayerZero"  # Default recommendation
 
-if __name__ == "__main__":
+def main():
+    parser = argparse.ArgumentParser(description="Interactive CLI for Blockchain Technology Recommendation")
+    parser.add_argument("use_case", type=str, help="Describe your use case (e.g., supply chain, financial services, identity management)")
+    args = parser.parse_args()
+
     tree = DecisionTree()
-    use_case = input("Enter your use case: ")
-    recommendation = tree.recommend_technology(use_case)
+    recommendation = tree.recommend_technology(args.use_case)
     print(f"Recommended Technology: {recommendation}")
+
+if __name__ == "__main__":
+    main()
