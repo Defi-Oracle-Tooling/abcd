@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: besu-node
+  labels:
+    app: besu
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: besu
+  template:
+    metadata:
+      labels:
+        app: besu
+    spec:
+      containers:
+      - name: besu
+        image: hyperledger/besu:latest
+        ports:
+        - containerPort: 8545
+        - containerPort: 8546
+        env:
+        - name: BESU_NETWORK
+          value: "mainnet"
+        - name: BESU_RPC_HTTP_ENABLED
+          value: "true"
+        - name: BESU_RPC_WS_ENABLED
+          value: "true"
+        volumeMounts:
+        - name: besu-data
+          mountPath: /opt/besu/data
+      volumes:
+      - name: besu-data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: besu-service
+spec:
+  selector:
+    app: besu
+  ports:
+  - protocol: TCP
+    port: 8545
+    targetPort: 8545
+  - protocol: TCP
+    port: 8546
+    targetPort: 8546
+  type: LoadBalancer

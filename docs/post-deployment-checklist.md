@@ -27,3 +27,9 @@ Post-deployment tasks should include:
 - Include monitoring and logging mechanisms to track tenant-specific activities and ensure compliance.
 - Support customization for tenants, such as configurable deployment options or plugins.
 - Adhere to relevant compliance standards (e.g., GDPR, ISO/IEC 27001) to ensure tenant data protection.
+
+### Additional Details
+- **Isolation Techniques**: Use Kubernetes namespaces or dedicated virtual machines for tenant isolation.
+- **RBAC Tools**: Leverage tools like Keycloak or AWS IAM for managing tenant-specific roles and permissions.
+- **Resource Optimization**: Implement auto-scaling policies and resource quotas to ensure fair resource distribution.
+- **Monitoring Tools**: Use Prometheus and Grafana to track tenant-specific metrics and logs.

@@ -1,0 +1,15 @@
+This project includes third-party dependencies that are licensed under their respective open-source licenses. Below is a list of key dependencies and their licenses:
+
+1. **Hyperledger Besu**
+   - License: Apache License 2.0
+   - URL: https://www.hyperledger.org/use/besu
+
+2. **Prometheus**
+   - License: Apache License 2.0
+   - URL: https://prometheus.io/
+
+3. **Grafana**
+   - License: AGPLv3
+   - URL: https://grafana.com/
+
+Please refer to the respective project websites for detailed license information.

@@ -20,6 +20,8 @@ Deployment options should include:
    - Multi-cloud
    - Hybrid single or multi-cloud
 
+[Learn more about Deployment Options](docs/deployment-options.md)
+
 ### Cloud Deployment Considerations
 Cloud deployments should support:
 - **Infrastructure Types**:
@@ -28,6 +30,9 @@ Cloud deployments should support:
   - Containers
   - Container clusters (e.g., Kubernetes)
   - Other cloud-specific offerings
+
+[Learn more about Cloud Deployment Considerations](docs/cloud-deployment-considerations.md)
+
 - **Security and Monitoring**:
   - Real-time API and CLI automated interactions to retrieve current quotas and test deployability
   - Implementation or review of:
@@ -43,6 +48,14 @@ Cloud deployments should support:
   - Follow ethical guidelines, such as ensuring data privacy, compliance with regulations (e.g., GDPR, HIPAA), and minimizing environmental impact.
   - Adhere to industry standards for security, scalability, and maintainability.
   - Regularly review and update deployment processes to align with evolving best practices.
+
+#### Relevant Standards
+- **ISO/IEC 27001**: Information Security Management
+- **ISO/IEC 27017**: Cloud Security
+- **ISO/IEC 27018**: Cloud Privacy
+- **ISO 14001**: Environmental Management
+- **GDPR**: General Data Protection Regulation
+- **HIPAA**: Health Insurance Portability and Accountability Act
 
 - **Performance and Security**:
   - Optimize resource usage to ensure cost-efficiency and performance.
@@ -71,3 +84,24 @@ Post-deployment tasks should include:
   - Include monitoring and logging mechanisms to track tenant-specific activities and ensure compliance.
   - Support customization for tenants, such as configurable deployment options or plugins.
   - Adhere to relevant compliance standards (e.g., GDPR, ISO/IEC 27001) to ensure tenant data protection.
+
+## Branching Strategy
+
+We follow the Git Flow branching strategy:
+
+1. **Main Branch**: Contains production-ready code.
+2. **Develop Branch**: Used for integrating features and testing.
+3. **Feature Branches**: Created for individual features and merged into `develop`.
+4. **Release Branches**: Used for final testing before merging into `main`.
+5. **Hotfix Branches**: Created for urgent fixes to the `main` branch.
+
+For more details, refer to the [Git Flow documentation](https://nvie.com/posts/a-successful-git-branching-model/).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+### Summary of the MIT License
+- Permission is granted to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software.
+- The software is provided "as is," without warranty of any kind, express or implied.
+- The authors are not liable for any claims, damages, or other liabilities arising from the use of the software.

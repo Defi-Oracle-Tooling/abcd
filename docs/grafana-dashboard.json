@@ -1,0 +1,30 @@
+{
+    "dashboard": {
+        "id": null,
+        "title": "Besu Node Metrics",
+        "panels": [
+            {
+                "type": "graph",
+                "title": "RPC Requests",
+                "targets": [
+                    {
+                        "expr": "rate(besu_rpc_requests_total[5m])",
+                        "legendFormat": "{{method}}",
+                        "refId": "A"
+                    }
+                ]
+            },
+            {
+                "type": "graph",
+                "title": "Active Peers",
+                "targets": [
+                    {
+                        "expr": "besu_peers_connected",
+                        "legendFormat": "Peers",
+                        "refId": "B"
+                    }
+                ]
+            }
+        ]
+    }
+}

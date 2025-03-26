@@ -398,3 +398,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Blockchain-related tools
+besu-data/
+nodekey
+keyfiles/
+*.rlp
+*.eth
+*.log
+*.jsonrpc
