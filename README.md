@@ -143,6 +143,36 @@ We follow the Git Flow branching strategy:
 
 For more details, refer to the [Git Flow documentation](https://nvie.com/posts/a-successful-git-branching-model/).
 
+## Submodule Management
+
+This project uses Git submodules for managing white-label repositories. Below are the steps to manage submodules:
+
+### Adding a Submodule
+To add a new submodule:
+```bash
+git submodule add <repository-url> submodules/<submodule-name>
+```
+
+### Initializing and Updating Submodules
+To initialize and update all submodules:
+```bash
+git submodule update --init --recursive
+```
+
+### Removing a Submodule
+To remove a submodule:
+```bash
+git submodule deinit -f submodules/<submodule-name>
+git rm -f submodules/<submodule-name>
+rm -rf .git/modules/submodules/<submodule-name>
+```
+
+### Viewing Submodule Status
+To check the status of all submodules:
+```bash
+git submodule status
+```
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
