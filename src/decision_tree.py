@@ -20,6 +20,12 @@ class DecisionTree:
             recommendations.append(("Consensys Quorum", 0.8))
         if "identity management" in use_case:
             recommendations.append(("PolygonID", 0.7))
+        if "multi-chain interoperability" in use_case:
+            recommendations.append(("Polkadot", 0.6))
+        if "high-performance dApps" in use_case:
+            recommendations.append(("Solana", 0.6))
+        if "customizable subnets" in use_case:
+            recommendations.append(("Avalanche", 0.6))
 
         if recommendations:
             # Sort by confidence score and return the highest
