@@ -89,6 +89,21 @@ remove_submodule() {
   echo "Submodule $repo_name removed successfully."
 }
 
+# Function to delete specific repositories
+filter_repositories() {
+  local filter=$1
+  local filtered_repos=()
+
+  for repo in "${REPOSITORIES[@]}"; do
+    if [[ $repo == *$filter* ]]; then
+      filtered_repos+=("$repo")
+    fi
+  done
+
+  echo "Filtered repositories: ${filtered_repos[@]}"
+  REPOSITORIES=(${filtered_repos[@]})
+}
+
 # Summary report
 log_summary() {
   echo "Summary:"
@@ -102,9 +117,20 @@ deleted_count=0
 skipped_count=0
 failed_count=0
 
-# Enhanced logic to delete repositories and submodules
+# Dry-run mode
+DRY_RUN=false
+if [[ "$1" == "--dry-run" ]]; then
+  DRY_RUN=true
+fi
+
+# Updated logic to support dry-run mode
 for repo in "${REPOSITORIES[@]}"; do
   echo "Processing repository: $repo"
+
+  if $DRY_RUN; then
+    echo "Dry-run: Would delete repository $repo and remove submodule."
+    continue
+  fi
 
   # Delete the repository from GitHub
   if force_delete_repository $repo; then

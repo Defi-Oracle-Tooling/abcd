@@ -269,15 +269,60 @@ log_summary() {
   log "INFO" "Repositories failed: $failed_count"
 }
 
+# Function to check if a repository is archived
+check_repository_archived() {
+  local repo_name=$1
+  response=$(curl -s \
+    -H "Authorization: token $GITHUB_TOKEN" \
+    -H "Accept: application/vnd.github.v3+json" \
+    $GITHUB_API/repos/$GITHUB_ORG/$repo_name)
+
+  if echo "$response" | grep -q '"archived": true'; then
+    echo "Repository $repo_name is archived. Skipping."
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Function to add repository description and topics
+add_repository_metadata() {
+  local repo_name=$1
+  local description="Default description for $repo_name"
+  local topics="blockchain,web3,automation"
+
+  log "INFO" "Adding metadata to repository: $repo_name"
+  response=$(curl -s -w "%{http_code}" -o /tmp/repo_metadata_response.json \
+    -H "Authorization: token $GITHUB_TOKEN" \
+    -H "Accept: application/vnd.github.v3+json" \
+    -X PATCH $GITHUB_API/repos/$GITHUB_ORG/$repo_name \
+    -d "{\"description\": \"$description\", \"topics\": [\"$topics\"]}")
+
+  if [ "$response" -ne 200 ]; then
+    log "ERROR" "Failed to add metadata to repository $repo_name."
+    log "ERROR" "Error: $(cat /tmp/repo_metadata_response.json)"
+  else
+    log "SUCCESS" "Metadata added to repository $repo_name."
+  fi
+
+  rm -f /tmp/repo_metadata_response.json
+}
+
 # Validate environment variables
 validate_env
 
-# Enhanced logic to skip processing if any step fails
+# Enhanced logic to skip archived repositories
 for repo in "${REPOSITORIES[@]}"; do
   log "INFO" "Processing repository: $repo"
 
   # Check if the repository exists
   if check_repository_exists $repo; then
+    # Check if the repository is archived
+    if check_repository_archived $repo; then
+      skipped_count=$((skipped_count + 1))
+      continue
+    fi
+
     log "INFO" "Repository $repo already exists."
     skipped_count=$((skipped_count + 1))
     continue
@@ -286,6 +331,9 @@ for repo in "${REPOSITORIES[@]}"; do
   # Create the repository if it does not exist
   create_repository $repo || { log "ERROR" "Failed to create $repo. Skipping."; failed_count=$((failed_count + 1)); continue; }
   created_count=$((created_count + 1))
+
+  # Add metadata to the repository
+  add_repository_metadata $repo || { log "ERROR" "Failed to add metadata to $repo. Skipping."; failed_count=$((failed_count + 1)); continue; }
 
   # Initialize the repository as a submodule
   initialize_submodule $repo || { log "ERROR" "Failed to add $repo as a submodule. Skipping."; failed_count=$((failed_count + 1)); continue; }

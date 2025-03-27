@@ -32,6 +32,30 @@ jobs:
       run: |
         python -m unittest discover tests
 
+  validate-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Validate Submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule status
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: validate-submodules
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Integration Tests
+        run: pnpm test
+
   deploy:
     runs-on: ubuntu-latest
     needs: test

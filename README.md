@@ -173,6 +173,38 @@ To check the status of all submodules:
 git submodule status
 ```
 
+## Usage Instructions for Scripts
+
+### `create_repositories.sh`
+This script creates repositories, initializes them, and links them as submodules.
+
+#### Usage:
+```bash
+bash scripts/create_repositories.sh [--dry-run]
+```
+- `--dry-run`: Simulates the script's actions without making actual changes.
+
+#### Features:
+- Creates repositories in the specified GitHub organization.
+- Adds descriptions and topics to repositories.
+- Initializes repositories with default files.
+- Links repositories as submodules.
+
+### `delete_repositories.sh`
+This script deletes repositories and removes corresponding submodules.
+
+#### Usage:
+```bash
+bash scripts/delete_repositories.sh [--dry-run] [--filter <keyword>]
+```
+- `--dry-run`: Simulates the script's actions without making actual changes.
+- `--filter <keyword>`: Deletes only repositories matching the specified keyword.
+
+#### Features:
+- Deletes repositories from the specified GitHub organization.
+- Removes corresponding submodules from the project.
+- Supports dry-run mode for testing.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
