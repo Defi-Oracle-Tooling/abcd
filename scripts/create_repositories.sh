@@ -20,7 +20,8 @@ REPOSITORIES=(
 )
 
 # GitHub organization or user
-GITHUB_ORG="your-org"
+# Removed hard-coded organization value.
+# It should now be provided via the .env file as GITHUB_ORG
 
 # Base directory for the project
 PROJECT_ROOT=$(dirname $(dirname $(realpath $0)))
@@ -30,6 +31,7 @@ if [ ! -f "$PROJECT_ROOT/.env" ]; then
   echo "Error: .env file not found. Please create a .env file in the project root directory with the required environment variables."
   echo "Example .env file content:"
   echo "GITHUB_ACCESS_TOKEN=your_github_access_token_here"
+  echo "GITHUB_ORG=your_org_name_here"
   exit 1
 fi
 
