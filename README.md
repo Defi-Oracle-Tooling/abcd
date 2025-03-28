@@ -205,6 +205,84 @@ bash scripts/delete_repositories.sh [--dry-run] [--filter <keyword>]
 - Removes corresponding submodules from the project.
 - Supports dry-run mode for testing.
 
+## Usage Instructions for Automation Scripts
+
+### `azure_setup.sh`
+This script sets up Azure resources, including resource groups, storage accounts, and Key Vault integration.
+
+#### Usage:
+```bash
+bash scripts/azure_setup.sh
+```
+
+#### Features:
+- Creates Azure resource groups and storage accounts.
+- Sets up Azure Monitor and Key Vault.
+- Adds secrets to Key Vault.
+
+---
+
+### `deployment_automation.sh`
+This script automates the deployment of resources and services using Terraform and Kubernetes.
+
+#### Usage:
+```bash
+bash scripts/deployment_automation.sh
+```
+
+#### Features:
+- Deploys infrastructure using Terraform.
+- Deploys Kubernetes resources.
+
+---
+
+### `validation_automation.sh`
+This script validates the status of deployed Azure resources and Kubernetes deployments.
+
+#### Usage:
+```bash
+bash scripts/validation_automation.sh
+```
+
+#### Features:
+- Validates Azure Storage Account provisioning status.
+- Checks the status of Kubernetes pods.
+
+---
+
+### `monitoring_setup.sh`
+This script sets up monitoring and alerting for Azure resources.
+
+#### Usage:
+```bash
+bash scripts/monitoring_setup.sh
+```
+
+#### Features:
+- Creates alert rules for high CPU usage.
+- Sets up log analytics queries for monitoring.
+
+---
+
+### CI/CD Pipeline
+The CI/CD pipeline automates the execution of these scripts using GitHub Actions.
+
+#### Workflow File:
+The pipeline is defined in `.github/workflows/ci_cd_pipeline.yml`.
+
+#### Features:
+- Automates setup, deployment, validation, and monitoring.
+- Uses `pnpm` for dependency management.
+
+---
+
+### Dependency Management
+Ensure all dependencies are installed using `pnpm`:
+
+```bash
+pnpm install
+```
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
