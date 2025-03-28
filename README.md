@@ -291,3 +291,29 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Permission is granted to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software.
 - The software is provided "as is," without warranty of any kind, express or implied.
 - The authors are not liable for any claims, damages, or other liabilities arising from the use of the software.
+
+## User Chain Configurations
+
+The `user-chain-configs` directory is used to store configuration files for multiple blockchains and environments. This includes development, testing, and mainnet configurations. Each blockchain has its own folder, and each folder contains environment-specific JSON files.
+
+### Structure
+```
+user-chain-configs
+├── blockchainA
+│   ├── dev.json       // Development settings for Blockchain A
+│   ├── test.json      // Testing settings for Blockchain A
+│   └── mainnet.json   // Production settings for Blockchain A
+├── blockchainB
+│   ├── dev.json       // Development settings for Blockchain B
+│   ├── test.json      // Testing settings for Blockchain B
+│   └── mainnet.json   // Production settings for Blockchain B
+└── common.json        // Global settings shared across blockchains and environments
+```
+
+### Adding New Configurations
+1. Create a new folder for the blockchain under `user-chain-configs`.
+2. Add `dev.json`, `test.json`, and `mainnet.json` files for the respective environments.
+3. Update `common.json` if there are global settings to be shared.
+
+### Example Usage
+Ensure your scripts dynamically load the appropriate configuration based on the blockchain and environment.
