@@ -57,7 +57,7 @@ if [ ! -d "$PROJECT_ROOT/submodules" ]; then
   echo "Created submodules directory."
 fi
 
-# Function to log messages with timestamps
+# Unified logging function
 log() {
   local level=$1
   local message=$2

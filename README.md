@@ -143,6 +143,16 @@ We follow the Git Flow branching strategy:
 
 For more details, refer to the [Git Flow documentation](https://nvie.com/posts/a-successful-git-branching-model/).
 
+### Submodule Initialization
+
+To ensure all submodules are initialized and updated, run the following command:
+
+```bash
+git submodule update --init --recursive
+```
+
+Alternatively, this is automated when you open the project in VS Code, thanks to the `.vscode/tasks.json` configuration.
+
 ## Submodule Management
 
 This project uses Git submodules for managing white-label repositories. Below are the steps to manage submodules:

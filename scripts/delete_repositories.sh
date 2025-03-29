@@ -51,10 +51,28 @@ GITHUB_TOKEN=$GITHUB_ACCESS_TOKEN
 # Base API URL
 GITHUB_API="https://api.github.com"
 
+# Unified logging function
+log() {
+  local level=$1
+  local message=$2
+  echo "$(date '+%Y-%m-%d %H:%M:%S') [$level] $message"
+}
+
+# Dry-run mode
+DRY_RUN=false
+if [[ "$1" == "--dry-run" ]]; then
+  DRY_RUN=true
+fi
+
 # Function to delete a repository
 force_delete_repository() {
   local repo_name=$1
-  echo "Deleting repository: $repo_name"
+  log "INFO" "Deleting repository: $repo_name"
+
+  if $DRY_RUN; then
+    log "INFO" "Dry-run: Would delete repository $repo_name."
+    return 0
+  fi
 
   response=$(curl -s -w "%{http_code}" -o /tmp/repo_delete_response.json \
     -H "Authorization: token $GITHUB_TOKEN" \
@@ -62,11 +80,11 @@ force_delete_repository() {
     -X DELETE $GITHUB_API/repos/$GITHUB_ORG/$repo_name)
 
   if [ "$response" -ne 204 ]; then
-    echo "Failed to delete repository $repo_name."
-    echo "Error: $(cat /tmp/repo_delete_response.json)"
+    log "ERROR" "Failed to delete repository $repo_name."
+    log "ERROR" "$(cat /tmp/repo_delete_response.json)"
     return 1
   else
-    echo "Repository $repo_name deleted successfully."
+    log "INFO" "Repository $repo_name deleted successfully."
     return 0
   fi
 
@@ -79,14 +97,14 @@ remove_submodule() {
   local repo_name=$1
   local submodule_path="$PROJECT_ROOT/submodules/$repo_name"
 
-  echo "Removing submodule: $repo_name"
+  log "INFO" "Removing submodule: $repo_name"
 
   # Remove the submodule entry from .gitmodules
   git submodule deinit -f $submodule_path
   git rm -f $submodule_path
   rm -rf .git/modules/$submodule_path
 
-  echo "Submodule $repo_name removed successfully."
+  log "INFO" "Submodule $repo_name removed successfully."
 }
 
 # Function to delete specific repositories
@@ -117,12 +135,6 @@ deleted_count=0
 skipped_count=0
 failed_count=0
 
-# Dry-run mode
-DRY_RUN=false
-if [[ "$1" == "--dry-run" ]]; then
-  DRY_RUN=true
-fi
-
 # Updated logic to support dry-run mode
 for repo in "${REPOSITORIES[@]}"; do
   echo "Processing repository: $repo"
@@ -136,16 +148,16 @@ for repo in "${REPOSITORIES[@]}"; do
   if force_delete_repository $repo; then
     deleted_count=$((deleted_count + 1))
   else
-    echo "Failed to delete repository $repo. Skipping."
+    log "ERROR" "Failed to delete repository $repo. Skipping."
     failed_count=$((failed_count + 1))
     continue
   fi
 
   # Remove the submodule
   if remove_submodule $repo; then
-    echo "Submodule $repo removed successfully."
+    log "INFO" "Submodule $repo removed successfully."
   else
-    echo "Failed to remove submodule $repo. Skipping."
+    log "ERROR" "Failed to remove submodule $repo. Skipping."
     failed_count=$((failed_count + 1))
   fi
 
